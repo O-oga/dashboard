@@ -1,0 +1,115 @@
+@font-face {
+    font-family: "Poppins-Light";
+    src: url("./assets/fonts/Poppins-Light.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Poppins-Regular", sans-serif;
+    src: url("./assets/fonts/Poppins-Regular.ttf") format("truetype")
+}
+
+@font-face {
+    font-family: "Poppins-Medium";
+    src: url("./assets/fonts/Poppins-Medium.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Poppins-SemiBold";
+    src: url("./assets/fonts/Poppins-SemiBold.ttf") format("truetype");
+}
+
+.poppins-light {
+    font-family: "Poppins-Light", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.poppins-regular {
+    font-family: "Poppins-Regular", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.poppins-medium {
+    font-family: "Poppins-Medium", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.poppins-semibold {
+    font-family: "Poppins-SemiBold", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+html,
+body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --shadow: rgba(0, 0, 0, 0.22);
+    --svg-button-collor: rgba(234, 234, 234, 0.09);
+    --svg-button-hover-color: rgba(234, 234, 234, 0.3);
+    --transition: 0, 3s;
+    --border: 2px solid rgba(234, 234, 234, 0.15);
+    --border-radius: 15px;
+    --card-background-color: rgba(23, 23, 23, 0.5);
+    --blur: blur(30px);
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(45deg,
+    transparent 25%,
+    var(--shadow) 25%,
+    transparent 27%,
+    transparent 50%,
+    var(--shadow) 50%,
+    transparent 52%,
+    transparent 75%,
+    var(--shadow) 75%,
+    transparent 77%,
+    transparent 100%
+    );
+    /*transform: translateX(0px) translateY(0px);*/
+    z-index: -1;
+}
+
+#bottom-panel-component {
+    width: 100vw;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    bottom: 10px;
+
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#add-card-modal {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: var(--card-background-color);
+    backdrop-filter: var(--blur);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+}

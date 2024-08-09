@@ -1,0 +1,28 @@
+modal{
+    height: 90vh;
+    width: 80vw;
+    backdrop-filter: blur(20px);
+    background: rgba(23, 23, 23, 0.8);
+    border: 2px solid rgba(23, 23, 23, 0.1);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+}
+
+input, button {
+    margin: 10px 0;
+}
+
+#btn-modal-close{
+    height: 90px;
+    width: 140px;
+    color: #171717
+}
+
+button {
+    width: 120px;
+    aspect-ratio: 1.3;
+}

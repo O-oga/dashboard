@@ -1,0 +1,33 @@
+bottom-panel {
+    height: 140px;
+    backdrop-filter: blur(20px);
+    background: rgba(23, 23, 23, 0.5);
+    width: 90vw;
+    border: 1px solid rgba(234, 234, 234, 0.15);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
+.panel-button {
+    backdrop-filter: var(--blur);
+    background: var(--card-background-color);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    width: 160px;
+    height: 105px;
+    margin: 10px;
+    padding: 5px;
+}
+
+.panel-button:hover {
+    border-color: transparent;
+    transition: var(--transition);
+}
+
+.panel-button:hover svg path {
+    stroke: var(--svg-button-hover-color);
+    transition: var(--transition);
+}
