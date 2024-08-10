@@ -1,0 +1,39 @@
+token-modal {
+    height: 40vh;
+    width: 70vw;
+}
+
+input:hover {
+    border: 1px solid rgba(234, 234, 234, 0.4);
+    transition: var(--transition);
+}
+
+.title{
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: "Poppins-Light", "sans-serif";
+    color: #EAEAEA;
+    margin-top: 10px;
+}
+
+#token-error {
+    color: transparent;
+    font-size: 1rem;
+    position: absolute;
+    bottom: 8px;
+    transition: var(--transition);
+}
+
+#btn-set-token {
+    border: var(--border);
+    color: #EAEAEA17;
+}
+
+#btn-set-token:hover {
+    color: #EAEAEA;
+    border: transparent;
+    transition: var(--transition);
+}
+
+#token {
+}

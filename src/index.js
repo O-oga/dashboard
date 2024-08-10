@@ -1,9 +1,9 @@
 'use strict';
 
 import "./style.css";
-import {createConnection} from "./components/loader";
 import {render} from "./components/render";
 import {addCardsEvents} from "./components/bottom-panel/bottom-panel";
+import {callModal} from "./components/set-token-modal/set-token-modal";
 
 'use strict';
 
@@ -21,8 +21,8 @@ const appendEventListeners = () => {
 
 const init = () => {
     domMapping();
-
-    createConnection();
+    callModal();
+    // createConnection();
 
     render();
     appendEventListeners();

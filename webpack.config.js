@@ -7,6 +7,7 @@ module.exports = {
         './src/components/reminder-component/reminder.js',
         './src/constants/auth.js',
         './src/components/loader.js',
+        './src/components/set-token-modal/set-token-modal.js',
         './src/components/add-card-modal/add-card.js',
         './src/index.js'
     ],
