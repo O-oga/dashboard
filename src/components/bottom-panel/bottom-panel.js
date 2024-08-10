@@ -14,7 +14,7 @@ export const renderBottomPanel = () => {
 
 const openModal = () => {
     const modal = document.createElement('div');
-    modal.id = 'add-card-modal';
+    modal.id = 'modal-window';
     modal.innerHTML = addCardHTML;
     document.body.appendChild(modal);
 

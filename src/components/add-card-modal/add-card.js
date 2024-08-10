@@ -29,12 +29,13 @@ const closeModal = (modal) => {
     elem.modal.remove();
 }
 export const appendCloseModalEvent = () => {
-    elem.modal = document.querySelector('#add-card-modal')
+    elem.modal = document.querySelector('#modal-window')
     elem.closeModal = document.querySelector('#btn-modal-close')
     elem.modalContent = document.querySelector('modal')
     elem.modal.addEventListener('click', () => {
         closeModal('#btn-modal-close')
     })
+    elem.closeModal.addEventListener('click', () => {closeModal()})
     window.addEventListener('click', (event) => {
         if (event.target === elem.modal) {
             closeModal();
