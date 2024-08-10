@@ -48,6 +48,8 @@ body {
     width: 100vw;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font), "sans-serif";
 }
 
 :root {
@@ -59,6 +61,8 @@ body {
     --border-radius: 15px;
     --card-background-color: rgba(23, 23, 23, 0.5);
     --blur: blur(30px);
+    --background-modal-input: rgba(234, 234, 234, 0.06);
+    --font: "Poppins-Light";
 }
 
 body::before {
@@ -99,7 +103,7 @@ body::before {
     align-items: center;
 }
 
-#add-card-modal {
+#modal-window {
     width: 100vw;
     height: 100vh;
     position: absolute;
