@@ -1,6 +1,7 @@
 'use strict';
 import './add-card.css'
 import {elem} from "../../index";
+import {renderBottomCards, renderBottomPanel} from "../bottom-panel-card/bottom-panel-card";
 
 const addNewPanel = () => {
 
@@ -32,6 +33,10 @@ export const appendCloseModalEvent = () => {
     elem.modal = document.querySelector('#modal-window')
     elem.closeModal = document.querySelector('#btn-modal-close')
     elem.modalContent = document.querySelector('modal')
+    elem.createCard = document.querySelector('#btn-create')
+
+    elem.createCard.addEventListener('click', createCard)
+
     elem.modal.addEventListener('click', () => {
         closeModal('#btn-modal-close')
     })
@@ -44,4 +49,17 @@ export const appendCloseModalEvent = () => {
     elem.modalContent.addEventListener('click', (event) => {
         event.stopPropagation();
     });
+}
+
+const createCard = () => {
+    elem.cardName = document.querySelector('#name')
+    if (elem.cardName.value){
+        elem.cardName.classList.remove('invalid-input')
+        let name = elem.cardName.value;
+        renderBottomCards('', name);
+        closeModal();
+    }
+    else{
+        elem.cardName.classList.add('invalid-input')
+    }
 }

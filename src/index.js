@@ -16,7 +16,7 @@ const domMapping = () => {
 
 
 const appendEventListeners = () => {
-    addCardsEvents();
+
 }
 
 const init = () => {

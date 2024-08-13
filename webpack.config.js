@@ -8,6 +8,8 @@ module.exports = {
         './src/constants/auth.js',
         './src/components/loader.js',
         './src/components/set-token-modal/set-token-modal.js',
+        './src/components/bottom-panel-card/bottom-panel-card.js',
+        './src/components/space-board/space-board.js',
         './src/components/add-card-modal/add-card.js',
         './src/index.js'
     ],

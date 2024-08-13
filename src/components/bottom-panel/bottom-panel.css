@@ -1,3 +1,8 @@
+.bottom-panel::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.5); /* Цвет ползунка */
+    border-radius: 10px; /* Скругленные края */
+}
+
 bottom-panel {
     height: 140px;
     backdrop-filter: blur(20px);
@@ -6,9 +11,13 @@ bottom-panel {
     border: 1px solid rgba(234, 234, 234, 0.15);
     border-radius: 15px;
     display: flex;
-    justify-content: center;
+
+    justify-content: center; /*wide-with*/
     flex-direction: row;
     align-items: center;
+    overflow-x: auto;
+    overflow-y: auto;
+    scrollbar-width: none;
 }
 
 .panel-button {
@@ -17,6 +26,7 @@ bottom-panel {
     border: var(--border);
     border-radius: var(--border-radius);
     width: 160px;
+    min-width: 100px;
     height: 105px;
     margin: 10px;
     padding: 5px;
@@ -30,4 +40,10 @@ bottom-panel {
 .panel-button:hover svg path {
     stroke: var(--svg-button-hover-color);
     transition: var(--transition);
+}
+
+.active-card {
+    /*border: var(--active-card-border);*/
+    background: var(--active-card-background-color);
+
 }

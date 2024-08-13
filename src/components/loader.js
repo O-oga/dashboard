@@ -2,6 +2,7 @@
 
 export let connection;
 let id = 1;
+let date = new Date();
 const pendingRequests = new Map();
 export let url = ``;
 
@@ -35,6 +36,15 @@ const messages = {
         "type": "ping",
         // timestamp: null
     },
+    getHistory: {
+        type: "history/history_during_period",
+        id: id,
+        start_time: "2023-01-01T00:00:00Z",
+        end_time: "2024-12-31T23:59:59Z",
+        entity_ids: ["sensor.voltage", "sensor.current_ma"],
+        minimal_response: false,
+        significant_changes_only: false
+    },
     changeState: {
         id: id,
         type: "call_service",
@@ -55,7 +65,7 @@ export let sendToHA = (data) => {
     // }
 
     return new Promise((resolve, reject) => {
-        pendingRequests.set(data.id, { resolve, reject });
+        pendingRequests.set(data.id, {resolve, reject});
         connection.send(JSON.stringify(data));
         console.log('Sent data:', data);
     });
@@ -82,7 +92,7 @@ let handleMessage = (event) => {
     }
 
     if (data.id && pendingRequests.has(data.id)) {
-        const { resolve, reject } = pendingRequests.get(data.id);
+        const {resolve, reject} = pendingRequests.get(data.id);
         pendingRequests.delete(data.id);
         if (data.type === 'pong') {
             resolve(data);
