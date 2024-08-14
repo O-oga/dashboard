@@ -1,0 +1,19 @@
+.space {
+    display: flex;
+    box-sizing: border-box;
+    height: calc(100vh - 13vh);
+    width: 100vw;
+    padding: 2vh 2vw 2vh 2vw;
+}
+
+.add-item {
+    backdrop-filter: var(--blur);
+    background: var(--card-background-color);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    min-width: 100px;
+    height: 17.6vh;
+    aspect-ratio: 1;
+    margin: 10px;
+    padding: 5px;
+}

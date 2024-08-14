@@ -1,5 +1,5 @@
 
-input, button, .svgs {
+.input, .btn, .svgs {
     margin: 10px 0;
     background: var(--background-modal-input);
     border: 1px solid transparent;
@@ -21,7 +21,7 @@ input, button, .svgs {
     box-sizing: border-box;
 }
 
-button {
+.btn {
     width: 220px;
     height: 66px;
     margin-bottom: 20px;

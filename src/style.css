@@ -61,8 +61,9 @@ body {
     --transition: 0.3s;
     --border: 2px solid rgba(234, 234, 234, 0.15);
     --invalid-border: 2px solid rgba(255, 0, 0, 0.4);
+    --close-collor: rgba(255, 80, 80, 0.6);
     --border-radius: 15px;
-    --card-background-color: rgba(23, 23, 23, 0.5);
+    --card-background-color: rgba(23, 23, 23, 0.6);
     --active-card-background-color: rgba(23, 23, 23, 0.9);
     --blur: blur(30px);
     --background-modal-input: rgba(234, 234, 234, 0.06);
@@ -99,7 +100,7 @@ body::before {
     position: absolute;
     display: flex;
     justify-content: center;
-    bottom: 10px;
+    bottom: 5px;
 
 }
 
@@ -115,7 +116,7 @@ modal, token-modal {
     backdrop-filter: blur(20px);
     background: rgba(23, 23, 23, 0.8);
     border: 2px solid rgba(23, 23, 23, 0.1);
-    border-radius: 20px;
+    border-radius: var(--border-radius);
     display: flex;
     flex-direction: column;
     justify-content: space-between;

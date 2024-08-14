@@ -3,23 +3,58 @@
 import bottomPanelCardHtml from './bottom-panel-card.html';
 import './bottom-panel-card.css';
 import {elem} from "../../index";
-import {setActiveSpace} from "../bottom-panel/bottom-panel";
+import {deleteSpace, setActiveSpace} from "../bottom-panel/bottom-panel";
 
+let pressTimer;
+let hideDeleteButtons = true;
 
 const addCardListener = (id) => {
     const card = document.querySelector(`#card${id}`);
+    const closeBtn = document.querySelector(`#delete${id}`);
     card.addEventListener('click', () => {
         console.log('card clicked' + id)
         setActiveSpace(id)
     });
 
-    card.addEventListener('keydown', () => {
-        let timeout = setTimeout(() => {
 
-        })
+    closeBtn.addEventListener('click', () => {
+        console.log('delete ' + id);
+        deleteSpace(id);
+    });
+    closeBtn.addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+
+    card.addEventListener('mousedown', () => {
+        pressTimer = setTimeout(() => {
+            hideDeleteButtons = !hideDeleteButtons;
+            // hideEvent = document.querySelector('body').addEventListener('mousedown', () => {updateDeleteButtonsVisibility(true)})
+            updateDeleteButtonsVisibility();
+        }, 1000)
+    });
+    card.addEventListener('mouseup', () => {
+        clearTimeout(pressTimer);
+    });
+
+    card.addEventListener('mouseleave', () => {
+        clearTimeout(pressTimer);
     });
 }
 
+const updateDeleteButtonsVisibility = (hide = false) => {
+    const deleteButtons = document.querySelectorAll('.delete');
+    hide ? deleteButtons.forEach(button => {
+        button.style.display = hideDeleteButtons = 'none';
+    }) : deleteButtons.forEach(button => {
+        if (hideDeleteButtons) {
+            button.classList.remove('visible');
+            button.classList.add('hidden');
+        } else {
+            button.classList.add('visible');
+            button.classList.remove('hidden');
+        }
+    });
+}
 
 
 const pushCardBefore = (svg = '', name, boardId) => {
@@ -28,8 +63,9 @@ const pushCardBefore = (svg = '', name, boardId) => {
 
     const bottomCard = tempContainer.firstChild;
     bottomCard.id = `card${boardId}`;
+    bottomCard.querySelector('.delete').id = `delete${boardId}`;
 
-    bottomCard.querySelector('.card-svg').innerHTML = svg;
+    // bottomCard.querySelector('.card-svg').innerHTML = svg;
     bottomCard.querySelector('.name-on-card').innerText = name;
     elem.addBtn.before(bottomCard);
     addCardListener(boardId)
@@ -61,20 +97,22 @@ export const createCardData = () => {
 }
 
 export const renderBottomCards = (svg = '', name = '') => {
-    let cardData = JSON.parse(localStorage.getItem('card-data')) || [];
+    let storedData = JSON.parse(localStorage.getItem('board-data')) || {boards: {}, boardOrder: []};
     if (name) {
         let newCard = createCard()
         newCard.svg = svg;
         newCard.name = name;
-        newCard.boardId = cardData.length.toString();
-        cardData.push(newCard);
+        const newId = Date.now().toString();
+        storedData.boards[newId] = newCard;
+        storedData.boardOrder.push(newId);
 
-        localStorage.setItem('card-data', JSON.stringify(cardData));
-        pushCardBefore(svg, name, newCard.boardId);
+        localStorage.setItem('board-data', JSON.stringify(storedData));
+        pushCardBefore(svg, name, newId);
 
     } else {
-        cardData.forEach(card => {
-            pushCardBefore(card.svg, card.name, card.boardId)
+        storedData.boardOrder.forEach(id => {
+            const card = storedData.boards[id];
+            pushCardBefore(card.svg, card.name, id)
         });
     }
 }

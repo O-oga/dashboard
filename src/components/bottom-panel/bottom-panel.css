@@ -4,12 +4,12 @@
 }
 
 bottom-panel {
-    height: 140px;
+    height: 13vh;
     backdrop-filter: blur(20px);
-    background: rgba(23, 23, 23, 0.5);
-    width: 90vw;
-    border: 1px solid rgba(234, 234, 234, 0.15);
-    border-radius: 15px;
+    background: var(--card-background-color);
+    width: 96vw;
+    border: var(--border);
+    border-radius: var(--border-radius);
     display: flex;
 
     justify-content: center; /*wide-with*/
@@ -37,8 +37,12 @@ bottom-panel {
     transition: var(--transition);
 }
 
-.panel-button:hover svg path {
+.panel-button:hover .card-svg path{
     stroke: var(--svg-button-hover-color);
+    transition: var(--transition);
+}
+.delete:hover path {
+    stroke: var(--close-collor);
     transition: var(--transition);
 }
 

@@ -7,17 +7,26 @@
     top: -2px;
     right: -3px;
     z-index: 10;
-    color: rgba(255, 80, 80, 0.5);
+    transition: opacity 0.3s ease-in-out;
+}
+.delete.visible {
+    opacity: 1;
+}
+.delete.hidden {
+    opacity: 0;
 }
 
 .card-svg {
     width: 100%;
-    height: 70%
+    height: 77%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .name-on-card {
     width: 100%;
-    height: 30%;
+    height: 23%;
     font-size: 1.2rem;
     text-align: center;
     color: var(--button-text-color);
