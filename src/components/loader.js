@@ -1,17 +1,28 @@
 'use strict';
 
+import {entitys} from "./modals/add-panel-to-space/add-panel-to-space";
+
 export let connection;
 let id = 1;
 let date = new Date();
 const pendingRequests = new Map();
 export let url = ``;
 
-const messages = {
+export const messages = {
     auth: {
         type: "auth",
         access_token: ''
     },
+    get_states: {
+        "id": id,
+        "type": "get_states"
+    },
     subscribe_events: {
+        id: id,
+        type: "subscribe_events",
+        event_type: "state_changed"
+    },
+    subscribe_entity_id_event: {
         id: id,
         type: "subscribe_events",
         event_type: "state_changed"
@@ -82,6 +93,7 @@ export const getAuthData = () => {
     return JSON.parse(localStorage.getItem('HAAuth'));
 }
 
+
 let handleMessage = (event) => {
     const data = JSON.parse(event.data);
     console.log(`Received data: ${JSON.stringify(data)}`);
@@ -112,7 +124,7 @@ let handleMessage = (event) => {
 function handleEvent(event) {
     if (event.event_type === 'state_changed') {
         console.log('State changed:', event.data);
-        // add logic...
+        changeDeviceState(event.data.entity_id, event.data.new_state.state, event.data.old_state.state, true);
     }
 }
 
@@ -140,7 +152,7 @@ let sendAuthMessage = (token) => {
     });
 }
 
-function setupHeartbeat() {
+const setupHeartbeat = () => {
     setInterval(() => {
         sendToHA(messages.ping)
             .then(() => console.log('Ping successful'))
@@ -166,6 +178,10 @@ export const createConnection = (url, token) => {
                     console.log('Authentication successful');
                     setupHeartbeat();
                     subscribeToEvents();
+                    createEntitysStateList().then((request)=>{
+                        Object.assign(entitys, request);
+                        console.log('Entitys state list created', entitys);
+                    });
                     resolve(connection);
                 })
                 .catch((error) => {
@@ -194,76 +210,45 @@ export const createConnection = (url, token) => {
 };
 
 
-export const changeDeviceState = async (entity_id, state) => {
+export const changeDeviceState = async (entity_id, new_state, old_state, serverEvent = false) => {
 
-    let newMessage = {...messages.changeState}
-    newMessage.service = state ? "turn_on" : "turn_off";
-    newMessage.service_data = {entity_id: entity_id};
+    if (serverEvent) {
+        //make client changes
+    } else {
+        let newMessage = {...messages.changeState}
+        newMessage.service = new_state ? "turn_on" : "turn_off";
+        newMessage.service_data = {entity_id: entity_id};
 
+        try {
+            const response = await sendToHA(newMessage);
+            console.log('Device state changed successfully:', response);
+            return response;
+        } catch (error) {
+            console.error('Failed to change device state:', error);
+            throw error;
+        }
+    }
+
+}
+
+export const createEntitysStateList = async () => {
     try {
-        const response = await sendToHA(newMessage);
-        console.log('Device state changed successfully:', response);
-        return response;
+        const request = await sendToHA(messages.get_states);
+        return request.result.reduce((entitys, item) => {
+            entitys[item.entity_id] = item.state;
+            return entitys;
+        }, {});
     } catch (error) {
-        console.error('Failed to change device state:', error);
+        console.error("Error creating entity state list:", error);
         throw error;
     }
 }
 
+export const getHistory = async (entity_ids, start_time, end_time) => {
+};
 
-// export const load = (link, options = {}) => {
-//
-//     const {
-//         method = 'GET',
-//         headers = {},
-//         body = null,
-//         responseType = 'json',
-//         onSuccess,
-//         onError
-//     } = options;
-//
-//     fetch(link, {
-//         method,
-//         headers: {
-//             'Content-Type': 'application/json',
-//             ...headers
-//         },
-//         body: body ? JSON.stringify(body) : null
+// export const getAllEntity = () => {
+//     sendToHA(messages.get_states).then(request => {
+//         return request.result.map(item => item.entity_id);
 //     })
-//         .then(response => {
-//             if (!response.ok) throw new Error('Error not ok')
-//             switch (responseType) {
-//                 case 'json':
-//                     return response.json();
-//                 case 'text':
-//                     return response.text();
-//                 case 'blob':
-//                     return response.blob();
-//                 default:
-//                     return response.json();
-//             }
-//         })
-//         .then(data => {
-//             if (onSuccess) {
-//                 onSuccess(data);
-//             }
-//             return data;
-//         })
-//         .catch(error => {
-//             console.error('Error loading data:', error);
-//             if (onError) {
-//                 onError(error);
-//             }
-//             throw error;
-//         })
-// }
-//
-// export const loadAllData = () => {
-//
-//     const save = (data) => {
-//         localStorage.setItem('data', JSON.stringify(data));
-//         console.log('Data saved to local storage');
-//     };
-//
-//     load(authData.urlAllStates, {...urlMethods.getAllData, onSuccess: save});
-// }
+// };

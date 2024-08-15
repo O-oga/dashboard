@@ -17,3 +17,8 @@
     margin: 10px;
     padding: 5px;
 }
+
+.add-item:hover path {
+    stroke: var(--svg-button-hover-color);
+    transition: var(--transition);
+}

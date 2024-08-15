@@ -1,7 +1,7 @@
 'use strict';
 import './add-card.css'
-import {elem} from "../../index";
-import {renderBottomCards, renderBottomPanel} from "../bottom-panel-card/bottom-panel-card";
+import {elem} from "../../../index";
+import {renderBottomCards, renderBottomPanel} from "../../bottom-panel-card/bottom-panel-card";
 
 const addNewPanel = () => {
 
@@ -25,8 +25,7 @@ const addNewPanel = () => {
     }
 }
 
-const closeModal = (modal) => {
-
+const closeModal = () => {
     elem.modal.remove();
 }
 export const appendCloseModalEvent = () => {
@@ -38,7 +37,7 @@ export const appendCloseModalEvent = () => {
     elem.createCard.addEventListener('click', createCard)
 
     elem.modal.addEventListener('click', () => {
-        closeModal('#btn-modal-close')
+        closeModal()
     })
     elem.closeModal.addEventListener('click', () => {closeModal()})
     window.addEventListener('click', (event) => {

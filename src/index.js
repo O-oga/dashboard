@@ -3,7 +3,7 @@
 import "./style.css";
 import {render} from "./components/render";
 import {addCardsEvents} from "./components/bottom-panel/bottom-panel";
-import {callModal} from "./components/set-token-modal/set-token-modal";
+import {callModal} from "./components/modals/set-token-modal/set-token-modal";
 
 'use strict';
 

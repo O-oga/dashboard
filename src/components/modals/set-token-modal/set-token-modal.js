@@ -2,8 +2,8 @@
 
 import './set-token-modal.css'
 import setTokenModalHtml from './set-token-modal.html';
-import {elem} from "../../index";
-import {createConnection, getAuthData, pushAuthData} from "../loader";
+import {elem} from "../../../index";
+import {createConnection, getAuthData, pushAuthData} from "../../loader";
 
 let tryInputData = (url, token) => {
     url = `wss://${url}/api/websocket`;

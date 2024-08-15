@@ -2,16 +2,7 @@
 
 import {renderBottomPanel, setActiveSpace} from "./bottom-panel/bottom-panel";
 
-const renderBackground = () => {
-
-    // let getRandomColor = () => {
-    //     const hues = [0, 60, 120, 180, 240, 300]; // основные оттенки
-    //     const h = hues[Math.floor(Math.random() * hues.length)];
-    //     const s = 50; // полная насыщенность
-    //     const l = Math.floor(Math.random() * 20) + 50; // яркость 50-70%
-    //     return `hsl(${h}, ${s}%, ${l}%)`;
-    // }
-
+export const renderBackground = (selector) => {
     let getRandomColor = () => {
         const h = Math.floor(Math.random() * 360);
         const rgb = hslToRgb(h, 100, 50);
@@ -29,16 +20,16 @@ const renderBackground = () => {
             const hue2rgb = (p, q, t) => {
                 if (t < 0) t += 1;
                 if (t > 1) t -= 1;
-                if (t < 1/6) return p + (q - p) * 6 * t;
-                if (t < 1/2) return q;
-                if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+                if (t < 1 / 6) return p + (q - p) * 6 * t;
+                if (t < 1 / 2) return q;
+                if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
                 return p;
             };
             const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
             const p = 2 * l - q;
-            r = hue2rgb(p, q, h + 1/3);
+            r = hue2rgb(p, q, h + 1 / 3);
             g = hue2rgb(p, q, h);
-            b = hue2rgb(p, q, h - 1/3);
+            b = hue2rgb(p, q, h - 1 / 3);
         }
         return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
     }
@@ -50,7 +41,7 @@ const renderBackground = () => {
         getRandomColor()
     ];
 
-    document.querySelector('body').style.background = `
+    document.querySelector(selector).style.background = `
         linear-gradient(45deg,
             ${colors[0]} 0% 25%,
             ${colors[1]} 25% 50%,
@@ -60,7 +51,7 @@ const renderBackground = () => {
 }
 
 export const render = () => {
-    renderBackground();
+    renderBackground('body');
     renderBottomPanel();
     setActiveSpace()
 }

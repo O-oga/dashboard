@@ -2,11 +2,19 @@
 .input, .btn, .svgs {
     margin: 10px 0;
     background: var(--background-modal-input);
-    border: 1px solid transparent;
-    border-radius: 15px;
+    border: 2px solid transparent;
+    border-radius: var(--border-radius);
     font-family: var(--font), sans-serif;
     font-size: 1.3rem;
-    color: #EAEAEA;
+    color: var(--button-text-color);
+}
+
+.btn:hover,
+input:hover {
+    background: none;
+    color: var(--button-hover-text-color);
+    transition: var(--transition);
+    border: var(--active-card-border);
 }
 
 /*input.placeholder{*/

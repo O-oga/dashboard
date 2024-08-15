@@ -1,10 +1,10 @@
 'use strict';
 
 import bottomPanelHtml from './bottom-panel.html';
-import addCardHTML from '../add-card-modal/add-card.html';
+import addCardHTML from '../modals/add-card-modal/add-card.html';
 import './bottom-panel.css';
 import {elem} from "../../index";
-import {appendCloseModalEvent} from "../add-card-modal/add-card";
+import {appendCloseModalEvent} from "../modals/add-card-modal/add-card";
 import {renderBottomCards} from "../bottom-panel-card/bottom-panel-card";
 import {renderSpace} from "../space-board/space-board";
 
@@ -44,7 +44,7 @@ const openModal = () => {
     modal.innerHTML = addCardHTML;
     document.body.appendChild(modal);
 
-    appendCloseModalEvent();
+    appendCloseModalEvent(modal);
 
 }
 

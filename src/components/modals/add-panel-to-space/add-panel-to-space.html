@@ -1,0 +1,29 @@
+<add-to-space-modal>
+    <div>
+        <div id="btn-space-modal-close">
+            <svg width="52" height="52" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M33.8748 21.1251L21.1248 33.875M21.1248 21.125L33.8748 33.875" stroke="#EAEAEA"
+                      stroke-opacity="0.15" stroke-width="4" stroke-linecap="round"/>
+                <path d="M53 27.5C53 39.5207 53 45.5313 49.2655 49.2655C45.5313 53 39.5207 53 27.5 53C15.4792 53 9.46877 53 5.7344 49.2655C2 45.5313 2 39.5207 2 27.5C2 15.4792 2 9.46877 5.7344 5.7344C9.46877 2 15.4792 2 27.5 2C39.5207 2 45.5313 2 49.2655 5.7344C51.7487 8.21744 52.5808 11.7067 52.8595 17.3"
+                      stroke="#EAEAEA" stroke-opacity="0.15" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+
+        </div>
+    </div>
+    <div class="flex-column">
+        <div class="header"></div>
+        <select name="entity_id" id="entity-list">
+            <option value="">Select entity</option>
+            <!-- List of entities -->
+        </select>
+        <label for="friendly-name"></label><input type="text" id="friendly-name" placeholder="friendly name">
+        <div class="preview-parts flex-center">
+            <div id="preview-panel"></div>
+            <div id="svg-list"></div>
+        </div>
+        <div class="right">
+            <button class="btn" id="btn-add-to-space">Add to space</button>
+        </div>
+    </div>
+
+</add-to-space-modal>

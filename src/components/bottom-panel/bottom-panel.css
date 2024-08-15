@@ -47,7 +47,10 @@ bottom-panel {
 }
 
 .active-card {
-    /*border: var(--active-card-border);*/
+    border: var(--active-card-border);
     background: var(--active-card-background-color);
-
+}
+.active-card:hover {
+    border: var(--active-card-border);
+    transition: var(--transition);
 }
