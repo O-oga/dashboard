@@ -28,7 +28,7 @@ add-to-space-modal {
     background: none;
 }
 #btn-space-modal-close:hover path{
-    stroke: red;
+    stroke: var(--close-collor);
     transition: var(--transition);
 }
 

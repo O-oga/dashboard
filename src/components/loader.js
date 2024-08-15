@@ -1,6 +1,6 @@
 'use strict';
 
-import {entitys} from "./modals/add-panel-to-space/add-panel-to-space";
+import {entities} from "./modals/add-panel-to-space/add-panel-to-space";
 
 export let connection;
 let id = 1;
@@ -179,8 +179,8 @@ export const createConnection = (url, token) => {
                     setupHeartbeat();
                     subscribeToEvents();
                     createEntitysStateList().then((request)=>{
-                        Object.assign(entitys, request);
-                        console.log('Entitys state list created', entitys);
+                        Object.assign(entities, request);
+                        console.log('Entitys state list created', entities);
                     });
                     resolve(connection);
                 })
@@ -229,6 +229,9 @@ export const changeDeviceState = async (entity_id, new_state, old_state, serverE
         }
     }
 
+}
+export const loadDevicesState = async () => {
+    entities = await createEntitysStateList();
 }
 
 export const createEntitysStateList = async () => {

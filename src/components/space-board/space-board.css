@@ -1,5 +1,6 @@
 .space {
     display: flex;
+    flex-wrap: wrap;
     box-sizing: border-box;
     height: calc(100vh - 13vh);
     width: 100vw;
@@ -11,10 +12,10 @@
     background: var(--card-background-color);
     border: var(--border);
     border-radius: var(--border-radius);
-    min-width: 100px;
-    height: 17.6vh;
+    height: var(--standart-item-size);
     aspect-ratio: 1;
-    margin: 10px;
+    box-sizing: border-box;
+    margin: 5px;
     padding: 5px;
 }
 

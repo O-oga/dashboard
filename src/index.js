@@ -19,12 +19,12 @@ const appendEventListeners = () => {
 
 }
 
-const init = () => {
+const init = async () => {
     domMapping();
-    callModal();
+    await callModal();
     // createConnection();
 
-    render();
+    await render();
     appendEventListeners();
 
 }

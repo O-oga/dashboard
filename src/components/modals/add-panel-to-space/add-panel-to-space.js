@@ -8,10 +8,15 @@ import {renderBackground} from "../../render";
 import {addNewPanel} from "../../space-board/space-board";
 
 let modalContainer;
-export let entitys = {};
+export let entities = {};
 
 const closeModal = () => {
     elem.addPanelModal.remove();
+}
+
+const getBeforeDot = (str) => {
+    const dotIndex = str.indexOf('.');
+    return dotIndex === -1 ? str : str.substring(0, dotIndex);
 }
 
 const addEvents = (id) => {
@@ -26,8 +31,8 @@ const addEvents = (id) => {
     elem.btnAddPanel.addEventListener('click', () => {
         const value = modalContainer.querySelector('#entity-list').value;
         const friendly_name = modalContainer.querySelector('#friendly-name').value;
-        addNewPanel(id, value, friendly_name);
-        closeModal();
+        const type_of_bar = getBeforeDot(value);
+        addNewPanel(id, value, friendly_name, type_of_bar).then(closeModal);
     })
 
 }
@@ -47,12 +52,12 @@ export const addItemToSpaceModal = async (id) => {
 export const createEntityList = async () => {
     const entityList = elem.addPanelModal.querySelector('#entity-list');
 
-    entitys = await createEntitysStateList();
+    entities = await createEntitysStateList();
 
-    Object.keys(entitys).forEach(entity => {
+    Object.keys(entities).forEach(entity => {
         const option = document.createElement('option');
         option.value = entity;
-        option.textContent = `${entity}   State: ${entitys[entity]}`;
+        option.textContent = `${entity}   State: ${entities[entity]}`;
         entityList.appendChild(option);
     })
 

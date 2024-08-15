@@ -97,7 +97,7 @@ export const createCardData = () => {
 }
 
 export const renderBottomCards = (svg = '', name = '') => {
-    let storedData = JSON.parse(localStorage.getItem('board-data')) || {boards: {}, boardOrder: []};
+    let storedData = JSON.parse(localStorage.getItem('board-data')) || {boards: {}, boardOrder: [], observedEntities: {}};
     if (name) {
         let newCard = createCard()
         newCard.svg = svg;
@@ -108,6 +108,7 @@ export const renderBottomCards = (svg = '', name = '') => {
 
         localStorage.setItem('board-data', JSON.stringify(storedData));
         pushCardBefore(svg, name, newId);
+        setActiveSpace();
 
     } else {
         storedData.boardOrder.forEach(id => {
